@@ -1,0 +1,66 @@
+#wrap {
+    display: grid;
+    grid-template-columns: repeat(15, 90px);
+    grid-template-rows: repeat(39, 20px);
+    background: red;
+   
+}
+#screen {
+    background: green;
+    grid-row: 10 / span 8; /* Adjusted grid row */
+    grid-column: 6/ span 6; /* Adjusted grid column */
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+}
+
+#button {
+    grid-row: 19 / span 2;
+    grid-column: 8 / span 2;
+}
+#text-output {
+    margin-top: 30px;
+}
+#text-output{
+    font-size: 30px;
+}
+#inventory {
+    background: wheat;
+    grid-row: 29 / span 14;
+    grid-column: 5 / span 8;
+    font-size: 10px;
+    display: grid; 
+    grid-template-columns: repeat(10, 10%);
+    grid-template-rows: repeat(10, 10%);
+    grid-auto-flow: column; /* Items flow into columns */
+    overflow-y: auto; /* Enable vertical scrolling */
+    border: 2px solid black;
+
+    
+}
+#inventory-heading {
+    
+    font-size: 34px;
+    margin-top: -8px;
+    align-self: flex-start;
+    margin-left: 280px;
+    text-decoration: underline;
+    
+
+}
+
+#inventory-item {
+    
+}
+#cookie-list {
+    grid-row: 2;
+    grid-column: 5;
+    font-size: 20px;
+    
+}
+#player-hp {
+    grid-row: 6;
+    grid-column: 4 / span 8;
+    font-size: 40px;
+}
