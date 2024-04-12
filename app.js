@@ -4,6 +4,9 @@ const invCookies = document.querySelector('#cookie-list');
 const playerHpElement = document.querySelector('#player-hp');
 const outputElement = document.querySelector('#output');
 const cookiesAvailable = ['chocolate', 'oatmeal', 'macademia', 'vanilla', 'chocolate-chip'];
+const cookieImages = {
+    chocolate: "https://i.imgur.com/M7chATe.jpeg"
+}
 const player = {
     hp: 3,
     inventory: [],
@@ -22,15 +25,14 @@ function clickHandler() {
         outputTextElement.innerHTML = `Oh no!<br><br>You lost!!`;
     } else {
         const cookie = randomCookie();
-        outputTextElement.innerHTML = 'You got a Cookie!<br><br>' + cookie;
+        const imageUrl = cookieImages[cookie];
+        outputTextElement.innerHTML = `You got a Cookie!<br><br><img src="${imageUrl}" alt="${cookie} Cookie"> ${cookie}`;
         addToInventory(cookie);
     }
     if (checkSameCookieCount(player.inventory) >= 3) {
         outputTextElement.innerHTML = `Congratulations!<br><br>You won!!`;
     }
 }
-
-
 
 function addToInventory(cookie) {
     player.inventory.push(cookie);
