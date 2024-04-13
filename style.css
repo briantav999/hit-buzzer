@@ -64,3 +64,8 @@
     grid-column: 4 / span 8;
     font-size: 40px;
 }
+img {
+    width: 70px;
+    height: 60px;
+    padding-left: 60px;
+}
