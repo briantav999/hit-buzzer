@@ -33,7 +33,7 @@ function clickHandler() {
         const img = document.createElement("img");
         img.src = cookieImages[cookie];
         outputTextElement.innerHTML = `You got a Cookie!<br><br>${cookie}`;
-        outputTextElement.appendChild(img); // Append the image element, not the URL
+        outputTextElement.appendChild(img); 
         addToInventory(cookie);
     }
 
