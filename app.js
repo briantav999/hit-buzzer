@@ -28,7 +28,10 @@ function clickHandler() {
     } else if (player.hp <= 0) {
         player.hp = 0;
         outputTextElement.innerHTML = `Oh no!<br><br>You lost!!`;
-    } else {
+    } else if(outputTextElement.innerHTML.includes("Oh no!") || (outputTextElement.innerHTML.includes('Congratulations!'))){
+        
+    }
+    else {
         const cookie = randomCookie();
         const img = document.createElement("img");
         img.src = cookieImages[cookie];
