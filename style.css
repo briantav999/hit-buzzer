@@ -6,7 +6,7 @@
    
 }
 #screen {
-    background: green;
+    background: beige;
     grid-row: 10 / span 8; /* Adjusted grid row */
     grid-column: 6/ span 6; /* Adjusted grid column */
     text-align: center;
