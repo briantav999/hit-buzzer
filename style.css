@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: repeat(15, 90px);
     grid-template-rows: repeat(39, 20px);
-    background: red;
+    background: darkblue;
    
 }
 #screen {
