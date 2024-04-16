@@ -69,3 +69,10 @@ img {
     height: 60px;
     padding-left: 60px;
 }
+#consumer {
+    grid-row: 13;
+    width: 90px;
+    height: 70px;
+    grid-column: 4;
+
+}

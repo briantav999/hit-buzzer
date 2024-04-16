@@ -1,9 +1,10 @@
 const outputTextElement = document.querySelector('#text-output');
 const outputScreenElement = document.querySelector('#screen')
-const buttonElement = document.querySelector('button');
+const buttonElement = document.querySelector('#button');
 const invCookies = document.querySelector('#cookie-list');
 const playerHpElement = document.querySelector('#player-hp');
 const outputElement = document.querySelector('#output');
+const consumeElement = document.querySelector("#consumer")
 const cookiesAvailable = ['chocolate', 'oatmeal', 'macademia', 'vanilla', 'chocolatechip'];
 const cookieImages = {
     chocolate: "https://media.istockphoto.com/id/1046582724/photo/close-up-image-of-soft-baked-dark-chocolate-cookies.jpg?s=612x612&w=0&k=20&c=jeP79ypxgj3s7oiMpdrHFpShzUMAJemxh9Je2LzfMKA=",
@@ -16,6 +17,24 @@ const player = {
     hp: 3,
     inventory: [],
 };
+let firstTurn = true; // Flag to track if it's the first turn
+
+function consumeCookie() {
+    if (player.inventory.length === 0) {
+        outputTextElement.innerHTML = "You don't have any cookies to consume!";
+    } else {
+        // Remove the last cookie from the inventory
+        const consumedCookie = player.inventory.pop();
+        if (!firstTurn) {
+            outputTextElement.innerHTML = `You consumed a ${consumedCookie} cookie!`;
+        }
+    }
+    firstTurn = false; // Update the flag after the first turn
+}
+
+// Add event listener for the consume button
+consumeElement.addEventListener("click", consumeCookie);
+  
 
 function randomCookie() {
     const randomIndex = Math.floor(Math.random() * cookiesAvailable.length);
