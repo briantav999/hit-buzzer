@@ -18,30 +18,49 @@ const player = {
     inventory: [],
 };
 let firstTurn = true; // Flag to track if it's the first turn
+let hasConsumedCookie = false;
+
+
+
 
 function consumeCookie() {
+    // checks to see if inventory has any cookies that can be consumed
     if (player.inventory.length === 0) {
         outputTextElement.innerHTML = "You don't have any cookies to consume!";
+        // checks to see if the player has already consumed a cookie this turn
+    } else if (hasConsumedCookie) {
+        outputTextElement.innerHTML = "You've already consumed a cookie this turn!";
+        // checks to see if last entered cookie was a macadamia cookie
+    } else if (player.inventory[player.inventory.length - 1] === 'macademia') {
+        outputTextElement.innerHTML = "You cannot consume a macadamia cookie!"
     } else {
-        // Remove the last cookie from the inventory
+        // Regular cookie consumption
         const consumedCookie = player.inventory.pop();
-        if (!firstTurn) {
-            outputTextElement.innerHTML = `You consumed a ${consumedCookie} cookie!`;
-        }
+        // removes last cookie from oven display
+        invCookies.removeChild(invCookies.lastChild);
+        player.hp++;
+        playerHpElement.textContent = `HP: ${player.hp}`;
+        outputTextElement.innerHTML = `You consumed a ${consumedCookie} cookie!`;
+        
+        hasConsumedCookie = true; // Update the flag after consuming a cookie
     }
     firstTurn = false; // Update the flag after the first turn
 }
 
+
+
+
 // Add event listener for the consume button
 consumeElement.addEventListener("click", consumeCookie);
   
-
+// function to get random cookie
 function randomCookie() {
     const randomIndex = Math.floor(Math.random() * cookiesAvailable.length);
     return cookiesAvailable[randomIndex];
 }
 
 function clickHandler() {
+    // checks to see if player lost , if not prompts the user to keep playing
     if (outputTextElement.innerHTML.includes('You got a Cookie!') && (player.hp > 0)) {
         outputTextElement.innerHTML = "try again!";
     } else if (player.hp <= 0) {
@@ -53,28 +72,32 @@ function clickHandler() {
     else {
         const cookie = randomCookie();
         const img = document.createElement("img");
+        // attaches each picture to its corresponding cookie
         img.src = cookieImages[cookie];
         outputTextElement.innerHTML = `You got a Cookie!<br><br>${cookie}`;
+        // add the image to the screen element
         outputTextElement.appendChild(img); 
         addToInventory(cookie);
     }
-
+        // define my winning condition
     if (checkSameCookieCount(player.inventory) >= 3) {
         outputTextElement.innerHTML = `Congratulations!<br><br>You won!!`;
     }
 }
-
+// function that pushes the random cookie into the inventory of the player and have it displayed on the screen aswell
 function addToInventory(cookie) {
     player.inventory.push(cookie);
     const listItem = document.createElement('li');
     listItem.innerHTML = cookie;
     invCookies.appendChild(listItem);
-
+    // for each macademia cookie they add to their inventory they lose a health point
     if (cookie === 'macademia') {
         player.hp--;
         playerHpElement.textContent = `HP: ${player.hp}`; // Update HP display
     }
+    hasConsumedCookie = false
 }
+// checks to see which cookie i have the most of in the inventory
 function checkSameCookieCount(inventory) {
     const cookieCounts = {};
     let maxCount = 0;
@@ -87,3 +110,5 @@ function checkSameCookieCount(inventory) {
     return maxCount;
 }
 buttonElement.addEventListener('click', clickHandler);
+
+
