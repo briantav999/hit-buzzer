@@ -38,6 +38,8 @@ function consumeCookie() {
         const consumedCookie = player.inventory.pop();
         // removes last cookie from oven display
         invCookies.removeChild(invCookies.lastChild);
+        const crunchSound = document.getElementById('crunch-sound');
+        crunchSound.play();
         player.hp++;
         playerHpElement.textContent = `HP: ${player.hp}`;
         outputTextElement.innerHTML = `You consumed a ${consumedCookie} cookie!`;
@@ -68,15 +70,19 @@ function clickHandler() {
         outputTextElement.innerHTML = `Oh no!<br><br>You lost!!`;
     } else if(outputTextElement.innerHTML.includes("Oh no!") || (outputTextElement.innerHTML.includes('Congratulations!'))){
         
-    }
-    else {
+    }else {
         const cookie = randomCookie();
         const img = document.createElement("img");
-        // attaches each picture to its corresponding cookie
+        // Attach each picture to its corresponding cookie
         img.src = cookieImages[cookie];
         outputTextElement.innerHTML = `You got a Cookie!<br><br>${cookie}`;
-        // add the image to the screen element
-        outputTextElement.appendChild(img); 
+        // Add the image to the screen element
+        outputTextElement.appendChild(img);
+    
+        // Play the ding sound
+        const dingSound = document.getElementById('ding-sound');
+        dingSound.play();
+    
         addToInventory(cookie);
     }
         // define my winning condition
