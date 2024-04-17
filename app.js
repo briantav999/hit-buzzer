@@ -17,7 +17,7 @@ const player = {
     hp: 3,
     inventory: [],
 };
-let firstTurn = true; // Flag to track if it's the first turn
+let firstTurn = true; 
 let hasConsumedCookie = false;
 
 
@@ -73,13 +73,13 @@ function clickHandler() {
     }else {
         const cookie = randomCookie();
         const img = document.createElement("img");
-        // Attach each picture to its corresponding cookie
+        // attach each picture to its corresponding cookie
         img.src = cookieImages[cookie];
         outputTextElement.innerHTML = `You got a Cookie!<br><br>${cookie}`;
         // Add the image to the screen element
         outputTextElement.appendChild(img);
     
-        // Play the ding sound
+        // play the ding sound
         const dingSound = document.getElementById('ding-sound');
         dingSound.play();
     
